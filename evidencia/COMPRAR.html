@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+    <header>
+        <h1>BORCELLE</h1>
+        <img src="./img/logo.jpg" alt="Logo" width="150" height="150" class="esquina-superior-izquierda">
+        <div class="usuario-icono" id="abrirModal">
+          <i class="fas fa-user"></i>
+        </div>
+      </header>  
+      <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+          }
+      
+          header {
+            background-color: #E3F1A7;
+            padding: 20px;
+            color: #000000;
+            text-align: center;
+            position: relative;
+          }
+      
+          .esquina-superior-izquierda {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+      
+          .usuario-icono {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+          }
+      
+          .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+      
+          .cocktail {
+            width: 300px;
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+          }
+      
+          .cocktail:hover {
+            transform: scale(1.1);
+          }
+      
+          .cocktail img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+          }
+      
+          .cocktail h3 {
+            margin: 0;
+            color: #333;
+          }
+      
+          .cocktail p {
+            color: #777;
+          }
+      
+          .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+          }
+      
+          .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+          }
+      
+          .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #ccc;
+            cursor: pointer;
+          }
+      
+          .register-form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+      
+          .register-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+      
+          .register-form label {
+            display: block;
+            font-weight: bold;
+          }
+      
+          .register-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+          }
+      
+          .register-form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+      
+          .register-form button[type="submit"]:hover {
+            background-color: #0056b3;
+          }
+      
+          .color-palette {
+            text-align: center;
+            margin-top: 20px;
+          }
+      
+          .color-box {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            cursor: pointer;
+          }
+      
+          /* Colores de la paleta */
+          .color-box.green {
+            background-color: #E3F1A7;
+          }
+      
+          .color-box.black {
+            background-color: #000000;
+          }
+      
+          .color-box.white {
+            background-color: #ffffff;
+          }
+      
+          .color-box.turquoise {
+            background-color: #99ef9b;
+          }
+      
+          .color-box.blue {
+            background-color: #096fff;
+          }
+      
+          .color-box.gray {
+            background-color: #7F8C8D;
+          }
+      
+          .animated-button {
+            background-color: #E3F1A7;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+      
+          .animated-button:hover {
+            background-color: #2980b9;
+          }
+      
+          .animated-button.pulse {
+            animation: pulse 1s infinite;
+          }
+      
+          .homepage-content {
+            text-align: center;
+            padding: 20px;
+          }
+      
+          @keyframes pulse {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.05);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+      
+          #geolocation-info {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #777;
+          }
+      
+          button#obtener-ubicacion {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #E3F1A7;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+      
+          button#obtener-ubicacion:hover {
+            background-color: #2980b9;
+          }
+        </style>
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Carrito de Compras</title>
+      <style>
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 20px;
+        }
+    
+        th, td {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+    
+        th {
+          background-color: #f2f2f2;
+        }
+    
+        .container {
+          max-width: 600px;
+          margin: 0 auto;
+        }
+    
+        .btn-pagar {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      </style>
+    </head>
+    <body>
+    
+    <div class="container">
+      <h2>PAQUETE 01</h2>
+    
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>100 bebidas</td>
+            <td>$200.00</td>
+          </tr>
+          <tr>
+            <td>50 bocadillos</td>
+            <td>$150.00</td>
+          </tr>
+          <tr>
+            <td>1 botella cortesia</td>
+            <td>$00.00</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>$350.00</td>
+          </tr>
+          <!-- Agrega más filas según sea necesario -->
+        </tbody>
+      </table>
+    
+      <h3>Método de Pago</h3>
+      <form id="form-pago">
+        <label for="metodo-pago">Selecciona un método de pago:</label>
+        <select id="metodo-pago" name="metodo-pago">
+          <option value="tarjeta">Tarjeta de crédito</option>
+          <option value="paypal">PayPal</option>
+          <!-- Agrega más opciones de pago según sea necesario -->
+        </select>
+      </form>
+    
+      <button onclick="openPackageDetails(1)" class="animated-button pulse">¡COMPRAR!</button>
+    </div>
+    
+    <script>
+      function realizarPago() {
+        // Aquí puedes agregar la lógica para procesar el pago
+        alert('¡Pago realizado con éxito!');
+      }
+    </script>
+    
+    </body>
+    </html>
+    
+</body>
+</html>

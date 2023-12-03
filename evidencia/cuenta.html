@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+    
+        header {
+          background-color: #E3F1A7;
+          padding: 20px;
+          color: #000000;
+          text-align: center;
+        }
+
+        form {
+          max-width: 400px;
+          margin: 0 auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 15px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+
+        input[type="submit"] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+          background-color: #45a049;
+        }
+
+        .success-message {
+          color: green;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        .esquina-superior-izquierda {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      </style>
+</head>
+<body>
+    <header>
+        <h1>Registro</h1>
+        <img src="./img/logo.jpg" alt="Logotipo" width="150" height="150" class="esquina-superior-izquierda">
+    </header>
+    <form id="registroForm" action="http://127.0.0.1:5500/evidencia/evidencia.html" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <label for="confirmarContrasena">Confirmar Contraseña:</label>
+        <input type="password" id="confirmarContrasena" name="confirmarContrasena" required>
+
+        <input type="submit" value="Crear Cuenta">
+    </form>
+
+    <div class="success-message" id="successMessage" style="display: none;">Cuenta creada con éxito.</div>
+
+    <script>
+        document.getElementById("registroForm").addEventListener("submit", function(event) {
+            // Validar que las contraseñas coincidan
+            var contrasena = document.getElementById("contrasena").value;
+            var confirmarContrasena = document.getElementById("confirmarContrasena").value;
+
+            if (contrasena !== confirmarContrasena) {
+                alert("Las contraseñas no coinciden.");
+                event.preventDefault(); // Evita que se envíe el formulario
+            } else {
+                // Muestra el mensaje de éxito
+                document.getElementById("successMessage").style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
+
+

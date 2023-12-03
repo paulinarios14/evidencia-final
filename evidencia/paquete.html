@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<body>
+    <header>
+      <h1>BORCELLE</h1>
+      <img src="./img/logo.jpg" alt="Logo" width="150" height="150" class="esquina-superior-izquierda">
+      <div class="usuario-icono" id="abrirModal">
+        <i class="fas fa-user"></i>
+      </div>
+    </header>  
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+    
+        header {
+          background-color: #E3F1A7;
+          padding: 20px;
+          color: #000000;
+          text-align: center;
+          position: relative;
+        }
+    
+        .esquina-superior-izquierda {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+    
+        .usuario-icono {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 24px;
+          color: #333;
+          cursor: pointer;
+        }
+    
+        .gallery {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+    
+        .cocktail {
+          width: 300px;
+          margin: 20px;
+          border: 1px solid #ccc;
+          padding: 10px;
+          text-align: center;
+          transition: transform 0.3s ease;
+        }
+    
+        .cocktail:hover {
+          transform: scale(1.1);
+        }
+    
+        .cocktail img {
+          max-width: 100%;
+          height: 200px;
+          object-fit: cover;
+          margin-bottom: 10px;
+        }
+    
+        .cocktail h3 {
+          margin: 0;
+          color: #333;
+        }
+    
+        .cocktail p {
+          color: #777;
+        }
+    
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 999;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          justify-content: center;
+          align-items: center;
+        }
+    
+        .modal-content {
+          background-color: #fff;
+          padding: 20px;
+          max-width: 400px;
+          text-align: center;
+        }
+    
+        .close {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          color: #ccc;
+          cursor: pointer;
+        }
+    
+        .register-form {
+          max-width: 400px;
+          margin: 20px auto;
+          padding: 20px;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .register-form h2 {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+    
+        .register-form label {
+          display: block;
+          font-weight: bold;
+        }
+    
+        .register-form input {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+        }
+    
+        .register-form button[type="submit"] {
+          width: 100%;
+          padding: 10px;
+          background-color: #007BFF;
+          color: #fff;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+    
+        .register-form button[type="submit"]:hover {
+          background-color: #0056b3;
+        }
+    
+        .color-palette {
+          text-align: center;
+          margin-top: 20px;
+        }
+    
+        .color-box {
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          margin: 5px;
+          cursor: pointer;
+        }
+    
+        /* Colores de la paleta */
+        .color-box.green {
+          background-color: #E3F1A7;
+        }
+    
+        .color-box.black {
+          background-color: #000000;
+        }
+    
+        .color-box.white {
+          background-color: #ffffff;
+        }
+    
+        .color-box.turquoise {
+          background-color: #99ef9b;
+        }
+    
+        .color-box.blue {
+          background-color: #096fff;
+        }
+    
+        .color-box.gray {
+          background-color: #7F8C8D;
+        }
+    
+        .animated-button {
+          background-color: #E3F1A7;
+          color: #fff;
+          font-size: 18px;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+    
+        .animated-button:hover {
+          background-color: #2980b9;
+        }
+    
+        .animated-button.pulse {
+          animation: pulse 1s infinite;
+        }
+    
+        .homepage-content {
+          text-align: center;
+          padding: 20px;
+        }
+    
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+    
+        #geolocation-info {
+          text-align: center;
+          margin-top: 20px;
+          font-style: italic;
+          color: #777;
+        }
+    
+        button#obtener-ubicacion {
+          margin-top: 10px;
+          padding: 8px 16px;
+          background-color: #E3F1A7;
+          color: #fff;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+    
+        button#obtener-ubicacion:hover {
+          background-color: #2980b9;
+        }
+      </style>
+    <div class="gallery">
+      <div class="cocktail">
+        <img src="https://www.gediscovery.edu.pe/blog/wp-content/uploads/2017/02/cocteleria-20-bebidas-11-300x198.jpg" alt="Cóctel 1">
+        <h3>Paquete 01</h3>
+        <p>
+          <strong>100 bebidas</strong><br>
+          <strong>50 bocadillos</strong><br>
+          <strong>1 botella de cortesía</strong>
+        </p>
+        <button onclick="openPackageDetails(1)" class="animated-button pulse"><a href="./COMPRAR.html">¡COMPRAR!</a></button>
+      </div>
+  
+      <div class="cocktail">
+        <img src="https://www.gediscovery.edu.pe/blog/wp-content/uploads/2017/02/cocteleria-20-bebidas-5-300x234.jpg" alt="Cóctel 2">
+        <h3>Paquete 02</h3>
+        <p>
+          <strong>150 bebidas al gusto</strong><br>
+          <strong>100 bocadillos</strong><br>
+          <strong>2 baristas</strong><br>
+          <strong>1 botella de cortesía</strong>
+        </p>
+        <button onclick="openPackageDetails(2)" class="animated-button pulse"> <a href="./comprar2.html">¡COMPRAR!</a></button>
+       
+      </div>
+  
+      <div class="cocktail">
+        <img src="https://www.gediscovery.edu.pe/blog/wp-content/uploads/2017/02/cocteleria-20-bebidas-2-300x200.jpg" alt="Cóctel 3">
+        <h3>Paquete 03</h3>
+        <p>
+          <strong>200 bebidas al gusto</strong><br>
+          <strong>150 bocadillos</strong><br>
+          <strong>4 baristas</strong><br>
+          <strong>2 botellas de cortesía</strong>
+        </p>
+        <button onclick="openPackageDetails(3)" class="animated-button pulse"><a href="./comprar3.html">¡COMPRAR!</a></button>
+      </div>
+    </div>
+
+</body>
+</html>
